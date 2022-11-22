@@ -5,7 +5,15 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B62F9ED8-9C8F-4C61-9C3F-B82C0633AC3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSSL-FileHashVerify", "src\OpenSSL-FileHashVerify\OpenSSL-FileHashVerify.csproj", "{9813D7CC-EA69-4336-A529-D74C65078A34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL-FileHashVerify", "src\OpenSSL-FileHashVerify\OpenSSL-FileHashVerify.csproj", "{9813D7CC-EA69-4336-A529-D74C65078A34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF1ACFA3-9D03-4851-92BC-87F6C36BBE2B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
