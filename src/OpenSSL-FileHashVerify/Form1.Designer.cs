@@ -42,7 +42,7 @@
             this.btnCopyToClipboard_SHA512 = new System.Windows.Forms.Button();
             this.txtSHA512Hash = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCalculateHashes = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,21 +169,22 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "SHA-512 Hash";
             // 
-            // button1
+            // btnCalculateHashes
             // 
-            this.button1.Location = new System.Drawing.Point(622, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 55);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Calculate Hashes";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCalculateHashes.Location = new System.Drawing.Point(622, 72);
+            this.btnCalculateHashes.Name = "btnCalculateHashes";
+            this.btnCalculateHashes.Size = new System.Drawing.Size(124, 55);
+            this.btnCalculateHashes.TabIndex = 1;
+            this.btnCalculateHashes.Text = "Calculate Hashes";
+            this.btnCalculateHashes.UseVisualStyleBackColor = true;
+            this.btnCalculateHashes.Click += new System.EventHandler(this.btnCalculateHashes_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCalculateHashes);
             this.Controls.Add(this.btnCopyToClipboard_SHA512);
             this.Controls.Add(this.txtSHA512Hash);
             this.Controls.Add(this.label4);
@@ -223,6 +224,6 @@
         private Button btnCopyToClipboard_SHA512;
         private TextBox txtSHA512Hash;
         private Label label4;
-        private Button button1;
+        private Button btnCalculateHashes;
     }
 }
