@@ -1,5 +1,6 @@
 using CliWrap;
 using CliWrap.Buffered;
+using OpenSSL_FileHashVerify.Forms;
 using System.Text;
 
 namespace OpenSSL_FileHashVerify;
@@ -16,13 +17,13 @@ public partial class MainForm : Form
 
     }
 
-    private void exitToolStripMenuItem_Click(object sender, EventArgs e) 
+    private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         => Application.Exit();
 
     private void btnBrowse_Click(object sender, EventArgs e)
     {
         using OpenFileDialog ofd = new();
-        
+
         if (ofd.ShowDialog() == DialogResult.OK)
         {
             txtFilePath.Clear();
@@ -32,6 +33,12 @@ public partial class MainForm : Form
 
     private async void btnCalculateHashes_Click(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(txtFilePath.Text))
+        {
+            MessageBox.Show("Select a file first.", "No file selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
+        }
+
         StringBuilder outputStringBuilder = new();
         string hashResult;
 
@@ -43,8 +50,8 @@ public partial class MainForm : Form
             .WithArguments($"sha1 \"{txtFilePath.Text}\"")
             .WithStandardOutputPipe(PipeTarget.ToStringBuilder(outputStringBuilder))
             .ExecuteBufferedAsync();
-           
-        hashResult = outputStringBuilder.ToString().Split("= ".ToCharArray()).Last();
+
+        hashResult = outputStringBuilder.ToString().Split("= ".ToCharArray()).Last().Replace(Environment.NewLine, string.Empty);
         txtSHA1Hash.Text = hashResult;
 
         await Cli.Wrap("openssl")
@@ -52,7 +59,7 @@ public partial class MainForm : Form
             .WithStandardOutputPipe(PipeTarget.ToStringBuilder(outputStringBuilder))
             .ExecuteBufferedAsync();
 
-        hashResult = outputStringBuilder.ToString().Split("= ".ToCharArray()).Last();
+        hashResult = outputStringBuilder.ToString().Split("= ".ToCharArray()).Last().Replace(Environment.NewLine, string.Empty);
         txtSHA256Hash.Text = hashResult;
 
         await Cli.Wrap("openssl")
@@ -60,8 +67,13 @@ public partial class MainForm : Form
             .WithStandardOutputPipe(PipeTarget.ToStringBuilder(outputStringBuilder))
             .ExecuteBufferedAsync();
 
-        hashResult = outputStringBuilder.ToString().Split("= ".ToCharArray()).Last();
+        hashResult = outputStringBuilder.ToString().Split("= ".ToCharArray()).Last().Replace(Environment.NewLine, string.Empty);
         txtSHA512Hash.Text = hashResult;
     }
 
+    private void btnCompareSHA1_Click(object sender, EventArgs e)
+    {
+        HashCompareForm form = new(txtSHA1Hash.Text);
+        form.ShowDialog();
+    }
 }

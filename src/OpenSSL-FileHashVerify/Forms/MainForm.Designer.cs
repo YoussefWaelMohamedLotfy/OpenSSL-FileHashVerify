@@ -43,6 +43,9 @@
             this.txtSHA512Hash = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCalculateHashes = new System.Windows.Forms.Button();
+            this.btnCompareSHA1 = new System.Windows.Forms.Button();
+            this.btnCompareSHA256 = new System.Windows.Forms.Button();
+            this.btnCompareSHA512 = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,14 +106,15 @@
             // txtSHA1Hash
             // 
             this.txtSHA1Hash.Location = new System.Drawing.Point(28, 197);
+            this.txtSHA1Hash.Multiline = true;
             this.txtSHA1Hash.Name = "txtSHA1Hash";
             this.txtSHA1Hash.ReadOnly = true;
-            this.txtSHA1Hash.Size = new System.Drawing.Size(654, 27);
+            this.txtSHA1Hash.Size = new System.Drawing.Size(560, 27);
             this.txtSHA1Hash.TabIndex = 6;
             // 
             // btnCopyToClipboard_SHA1
             // 
-            this.btnCopyToClipboard_SHA1.Location = new System.Drawing.Point(694, 197);
+            this.btnCopyToClipboard_SHA1.Location = new System.Drawing.Point(594, 197);
             this.btnCopyToClipboard_SHA1.Name = "btnCopyToClipboard_SHA1";
             this.btnCopyToClipboard_SHA1.Size = new System.Drawing.Size(94, 27);
             this.btnCopyToClipboard_SHA1.TabIndex = 7;
@@ -119,7 +123,7 @@
             // 
             // btnCopyToClipboard_SHA256
             // 
-            this.btnCopyToClipboard_SHA256.Location = new System.Drawing.Point(694, 271);
+            this.btnCopyToClipboard_SHA256.Location = new System.Drawing.Point(594, 271);
             this.btnCopyToClipboard_SHA256.Name = "btnCopyToClipboard_SHA256";
             this.btnCopyToClipboard_SHA256.Size = new System.Drawing.Size(94, 27);
             this.btnCopyToClipboard_SHA256.TabIndex = 10;
@@ -129,9 +133,10 @@
             // txtSHA256Hash
             // 
             this.txtSHA256Hash.Location = new System.Drawing.Point(28, 271);
+            this.txtSHA256Hash.Multiline = true;
             this.txtSHA256Hash.Name = "txtSHA256Hash";
             this.txtSHA256Hash.ReadOnly = true;
-            this.txtSHA256Hash.Size = new System.Drawing.Size(654, 27);
+            this.txtSHA256Hash.Size = new System.Drawing.Size(560, 27);
             this.txtSHA256Hash.TabIndex = 9;
             // 
             // label3
@@ -145,25 +150,26 @@
             // 
             // btnCopyToClipboard_SHA512
             // 
-            this.btnCopyToClipboard_SHA512.Location = new System.Drawing.Point(694, 343);
+            this.btnCopyToClipboard_SHA512.Location = new System.Drawing.Point(594, 353);
             this.btnCopyToClipboard_SHA512.Name = "btnCopyToClipboard_SHA512";
-            this.btnCopyToClipboard_SHA512.Size = new System.Drawing.Size(94, 27);
+            this.btnCopyToClipboard_SHA512.Size = new System.Drawing.Size(94, 51);
             this.btnCopyToClipboard_SHA512.TabIndex = 13;
             this.btnCopyToClipboard_SHA512.Text = "Copy";
             this.btnCopyToClipboard_SHA512.UseVisualStyleBackColor = true;
             // 
             // txtSHA512Hash
             // 
-            this.txtSHA512Hash.Location = new System.Drawing.Point(28, 343);
+            this.txtSHA512Hash.Location = new System.Drawing.Point(28, 353);
+            this.txtSHA512Hash.Multiline = true;
             this.txtSHA512Hash.Name = "txtSHA512Hash";
             this.txtSHA512Hash.ReadOnly = true;
-            this.txtSHA512Hash.Size = new System.Drawing.Size(654, 27);
+            this.txtSHA512Hash.Size = new System.Drawing.Size(560, 51);
             this.txtSHA512Hash.TabIndex = 12;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 320);
+            this.label4.Location = new System.Drawing.Point(28, 330);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 20);
             this.label4.TabIndex = 11;
@@ -179,11 +185,42 @@
             this.btnCalculateHashes.UseVisualStyleBackColor = true;
             this.btnCalculateHashes.Click += new System.EventHandler(this.btnCalculateHashes_Click);
             // 
+            // btnCompareSHA1
+            // 
+            this.btnCompareSHA1.Location = new System.Drawing.Point(694, 197);
+            this.btnCompareSHA1.Name = "btnCompareSHA1";
+            this.btnCompareSHA1.Size = new System.Drawing.Size(94, 27);
+            this.btnCompareSHA1.TabIndex = 14;
+            this.btnCompareSHA1.Text = "Compare";
+            this.btnCompareSHA1.UseVisualStyleBackColor = true;
+            this.btnCompareSHA1.Click += new System.EventHandler(this.btnCompareSHA1_Click);
+            // 
+            // btnCompareSHA256
+            // 
+            this.btnCompareSHA256.Location = new System.Drawing.Point(694, 271);
+            this.btnCompareSHA256.Name = "btnCompareSHA256";
+            this.btnCompareSHA256.Size = new System.Drawing.Size(94, 27);
+            this.btnCompareSHA256.TabIndex = 15;
+            this.btnCompareSHA256.Text = "Compare";
+            this.btnCompareSHA256.UseVisualStyleBackColor = true;
+            // 
+            // btnCompareSHA512
+            // 
+            this.btnCompareSHA512.Location = new System.Drawing.Point(694, 353);
+            this.btnCompareSHA512.Name = "btnCompareSHA512";
+            this.btnCompareSHA512.Size = new System.Drawing.Size(94, 51);
+            this.btnCompareSHA512.TabIndex = 16;
+            this.btnCompareSHA512.Text = "Compare";
+            this.btnCompareSHA512.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCompareSHA512);
+            this.Controls.Add(this.btnCompareSHA256);
+            this.Controls.Add(this.btnCompareSHA1);
             this.Controls.Add(this.btnCalculateHashes);
             this.Controls.Add(this.btnCopyToClipboard_SHA512);
             this.Controls.Add(this.txtSHA512Hash);
@@ -225,5 +262,8 @@
         private TextBox txtSHA512Hash;
         private Label label4;
         private Button btnCalculateHashes;
+        private Button btnCompareSHA1;
+        private Button btnCompareSHA256;
+        private Button btnCompareSHA512;
     }
 }
