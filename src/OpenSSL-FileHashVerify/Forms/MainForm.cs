@@ -1,6 +1,7 @@
 using CliWrap;
 using CliWrap.Buffered;
 using OpenSSL_FileHashVerify.Forms;
+using System.Diagnostics;
 using System.Text;
 
 namespace OpenSSL_FileHashVerify;
@@ -11,14 +12,6 @@ public partial class MainForm : Form
     {
         InitializeComponent();
     }
-
-    private void MainForm_Load(object sender, EventArgs e)
-    {
-
-    }
-
-    private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        => Application.Exit();
 
     private void btnBrowse_Click(object sender, EventArgs e)
     {
@@ -71,9 +64,56 @@ public partial class MainForm : Form
         txtSHA512Hash.Text = hashResult;
     }
 
-    private void btnCompareSHA1_Click(object sender, EventArgs e)
+    private void btnCompare_Click(object sender, EventArgs e)
     {
-        HashCompareForm form = new(txtSHA1Hash.Text);
+        if (string.IsNullOrEmpty(txtSHA1Hash.Text) || string.IsNullOrEmpty(txtSHA256Hash.Text) || string.IsNullOrEmpty(txtSHA512Hash.Text))
+        {
+            MessageBox.Show("Calculate a Hash first.", "No Hash provided", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
+        }
+        
+        Button clickedButton = (sender as Button)!;
+
+        HashCompareForm form = clickedButton.Name switch
+        {
+            "btnCompareSHA1" => new(txtSHA1Hash.Text),
+            "btnCompareSHA256" => new(txtSHA256Hash.Text),
+            "btnCompareSHA512" => new(txtSHA512Hash.Text),
+            _ => throw new UnreachableException("Unexpected Point Reached")
+        }; 
+            
         form.ShowDialog();
+    }
+
+    private void btnCopy_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(txtSHA1Hash.Text) || string.IsNullOrEmpty(txtSHA256Hash.Text) || string.IsNullOrEmpty(txtSHA512Hash.Text))
+        {
+            MessageBox.Show("Calculate a Hash first.", "No Hash provided", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
+        }
+
+        Button clickedButton = (sender as Button)!;
+
+        TextBox targetTextbox = clickedButton.Name switch
+        {
+            "btnCopyToClipboard_SHA1" => txtSHA1Hash,
+            "btnCopyToClipboard_SHA256" => txtSHA256Hash,
+            "btnCopyToClipboard_SHA512" => txtSHA512Hash,
+            _ => throw new UnreachableException("Unexpected Point Reached")
+        };
+
+        targetTextbox.SelectAll();
+        targetTextbox.Copy();
+
+        string hashNameText= clickedButton.Name switch
+        {
+            "btnCopyToClipboard_SHA1" => "SHA-1 Hash",
+            "btnCopyToClipboard_SHA256" => "SHA-256 Hash",
+            "btnCopyToClipboard_SHA512" => "SHA-512 Hash",
+            _ => throw new UnreachableException("Unexpected Point Reached")
+        };
+
+        lblCopied.Text = $"{hashNameText} Copied to Clipboard";
     }
 }
