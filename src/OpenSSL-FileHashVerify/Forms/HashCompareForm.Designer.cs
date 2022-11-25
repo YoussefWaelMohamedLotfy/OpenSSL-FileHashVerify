@@ -71,6 +71,7 @@
             this.Controls.Add(this.txtHash);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "HashCompareForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Hash Compare";
             this.ResumeLayout(false);
             this.PerformLayout();

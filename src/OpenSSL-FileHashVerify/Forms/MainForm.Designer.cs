@@ -46,6 +46,7 @@
             this.btnCompareSHA1 = new System.Windows.Forms.Button();
             this.btnCompareSHA256 = new System.Windows.Forms.Button();
             this.btnCompareSHA512 = new System.Windows.Forms.Button();
+            this.lblCopied = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +54,8 @@
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.lblCopied});
             this.statusStrip.Location = new System.Drawing.Point(0, 424);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 26);
@@ -120,6 +122,7 @@
             this.btnCopyToClipboard_SHA1.TabIndex = 7;
             this.btnCopyToClipboard_SHA1.Text = "Copy";
             this.btnCopyToClipboard_SHA1.UseVisualStyleBackColor = true;
+            this.btnCopyToClipboard_SHA1.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // btnCopyToClipboard_SHA256
             // 
@@ -129,6 +132,7 @@
             this.btnCopyToClipboard_SHA256.TabIndex = 10;
             this.btnCopyToClipboard_SHA256.Text = "Copy";
             this.btnCopyToClipboard_SHA256.UseVisualStyleBackColor = true;
+            this.btnCopyToClipboard_SHA256.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // txtSHA256Hash
             // 
@@ -156,6 +160,7 @@
             this.btnCopyToClipboard_SHA512.TabIndex = 13;
             this.btnCopyToClipboard_SHA512.Text = "Copy";
             this.btnCopyToClipboard_SHA512.UseVisualStyleBackColor = true;
+            this.btnCopyToClipboard_SHA512.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // txtSHA512Hash
             // 
@@ -193,7 +198,7 @@
             this.btnCompareSHA1.TabIndex = 14;
             this.btnCompareSHA1.Text = "Compare";
             this.btnCompareSHA1.UseVisualStyleBackColor = true;
-            this.btnCompareSHA1.Click += new System.EventHandler(this.btnCompareSHA1_Click);
+            this.btnCompareSHA1.Click += new System.EventHandler(this.btnCompare_Click);
             // 
             // btnCompareSHA256
             // 
@@ -203,6 +208,7 @@
             this.btnCompareSHA256.TabIndex = 15;
             this.btnCompareSHA256.Text = "Compare";
             this.btnCompareSHA256.UseVisualStyleBackColor = true;
+            this.btnCompareSHA256.Click += new System.EventHandler(this.btnCompare_Click);
             // 
             // btnCompareSHA512
             // 
@@ -212,6 +218,13 @@
             this.btnCompareSHA512.TabIndex = 16;
             this.btnCompareSHA512.Text = "Compare";
             this.btnCompareSHA512.UseVisualStyleBackColor = true;
+            this.btnCompareSHA512.Click += new System.EventHandler(this.btnCompare_Click);
+            // 
+            // lblCopied
+            // 
+            this.lblCopied.Name = "lblCopied";
+            this.lblCopied.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblCopied.Size = new System.Drawing.Size(0, 20);
             // 
             // MainForm
             // 
@@ -238,7 +251,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "OpenSSL File Verify";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -265,5 +277,6 @@
         private Button btnCompareSHA1;
         private Button btnCompareSHA256;
         private Button btnCompareSHA512;
+        private ToolStripStatusLabel lblCopied;
     }
 }

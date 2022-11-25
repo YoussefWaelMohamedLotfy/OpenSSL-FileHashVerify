@@ -71,9 +71,24 @@ public partial class MainForm : Form
         txtSHA512Hash.Text = hashResult;
     }
 
-    private void btnCompareSHA1_Click(object sender, EventArgs e)
+    private void btnCompare_Click(object sender, EventArgs e)
     {
-        HashCompareForm form = new(txtSHA1Hash.Text);
+        if (string.IsNullOrEmpty(txtSHA1Hash.Text) || string.IsNullOrEmpty(txtSHA256Hash.Text) || string.IsNullOrEmpty(txtSHA512Hash.Text))
+        {
+            MessageBox.Show("Calculate a Hash first.", "No Hash provided", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
+        }
+        
+        Button clickedButton = (sender as Button)!;
+
+        HashCompareForm form = clickedButton.Name switch
+        {
+            "btnCompareSHA1" => new(txtSHA1Hash.Text),
+            "btnCompareSHA256" => new(txtSHA256Hash.Text),
+            "btnCompareSHA512" => new(txtSHA512Hash.Text),
+            _ => throw new UnreachableException("Unexpected Point Reached")
+        }; 
+            
         form.ShowDialog();
     }
 }
